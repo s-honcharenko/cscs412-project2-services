@@ -8,7 +8,6 @@
   var boardEl = document.getElementById('board');
   var scoreEl = document.getElementById('score');
   var bestEl = document.getElementById('best');
-  var statusEl = document.getElementById('status');
   var undoEl = document.getElementById('undo');
   var newEl = document.getElementById('new');
   var overlayEl = document.getElementById('overlay');
@@ -177,15 +176,6 @@
     scoreEl.textContent = String(score);
     bestEl.textContent = String(best);
     undoEl.disabled = !previous;
-
-    var highest = Math.max.apply(null, grid);
-    statusEl.textContent = over
-      ? 'Game over — start a new game to play again.'
-      : 'Highest tile ' +
-        highest +
-        ' · ' +
-        emptyCells().length +
-        ' free squares.';
   }
 
   function showOverlay(title, text, continuable) {
@@ -248,14 +238,14 @@
     ArrowRight: 'right',
     ArrowUp: 'up',
     ArrowDown: 'down',
-    a: 'left',
-    d: 'right',
-    w: 'up',
-    s: 'down',
-    A: 'left',
-    D: 'right',
-    W: 'up',
-    S: 'down'
+    h: 'left',
+    j: 'down',
+    k: 'up',
+    l: 'right',
+    H: 'left',
+    J: 'down',
+    K: 'up',
+    L: 'right'
   };
 
   document.addEventListener('keydown', function (e) {
@@ -268,36 +258,6 @@
 
   newEl.addEventListener('click', reset);
   undoEl.addEventListener('click', undo);
-
-  var touchStart = null;
-
-  boardEl.addEventListener('pointerdown', function (e) {
-    touchStart = { x: e.clientX, y: e.clientY };
-  });
-
-  boardEl.addEventListener('pointerup', function (e) {
-    if (!touchStart || !overlayEl.hidden) {
-      touchStart = null;
-      return;
-    }
-    var dx = e.clientX - touchStart.x;
-    var dy = e.clientY - touchStart.y;
-    touchStart = null;
-    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
-    move(
-      Math.abs(dx) > Math.abs(dy)
-        ? dx > 0
-          ? 'right'
-          : 'left'
-        : dy > 0
-          ? 'down'
-          : 'up'
-    );
-  });
-
-  boardEl.addEventListener('pointercancel', function () {
-    touchStart = null;
-  });
 
   buildCells();
   best = loadBest();
@@ -331,5 +291,3 @@
     }
   };
 })();
-
-document.querySelector('.xin-host').textContent = location.host;

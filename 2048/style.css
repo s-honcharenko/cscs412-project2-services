@@ -10,12 +10,42 @@
   padding: 9px;
   background: #c9d4e6;
   border-radius: 10px;
-  touch-action: none;
   user-select: none;
 }
 .ark-board:focus-visible {
   outline: 2px solid var(--xin-blue);
   outline-offset: 3px;
+}
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 18px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--xin-ink);
+}
+
+.game-controls span {
+  white-space: nowrap;
+}
+
+.game-controls kbd {
+  display: inline-block;
+  min-width: 26px;
+  padding: 3px 6px;
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.4;
+  border-color: var(--xin-tint-line);
+}
+
+@media (max-width: 480px) {
+  .game-controls span:first-child {
+    flex-basis: 100%;
+  }
 }
 
 .ark-cell {

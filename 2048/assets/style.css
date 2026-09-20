@@ -376,9 +376,6 @@ kbd {
   font-size: 12.5px;
   color: var(--xin-muted);
 }
-.xin-footer-inner .xin-host {
-  margin-left: auto;
-}
 
 @media (max-width: 560px) {
   .xin-header-inner {

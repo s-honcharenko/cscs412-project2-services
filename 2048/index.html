@@ -6,7 +6,7 @@
     <title>Xin Arcade — 2048</title>
     <meta
       name="description"
-      content="Xin Arcade — 2048. Slide tiles with the arrow keys or by swiping."
+      content="Xin Arcade — 2048. Reach the 2048 tile using the arrow keys or H/J/K/L."
     />
     <link rel="icon" href="assets/NixOS.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="assets/style.css" />
@@ -18,7 +18,7 @@
         <img class="xin-logo" src="assets/NixOS.svg" alt="Xin, Inc. logo" />
         <a class="xin-wordmark" href="/">Xin,&nbsp;Inc.</a>
         <div class="xin-service">
-          <span class="xin-badge">Arcade &middot; 2048</span>
+          <span class="xin-badge">Arcade &bull; 2048</span>
         </div>
       </div>
     </header>
@@ -26,10 +26,8 @@
     <main class="xin-main">
       <h1 class="xin-title">2048</h1>
       <p class="xin-lede">
-        Slide the tiles with the <kbd>&larr;</kbd> <kbd>&uarr;</kbd>
-        <kbd>&darr;</kbd> <kbd>&rarr;</kbd> keys, <kbd>W</kbd><kbd>A</kbd
-        ><kbd>S</kbd><kbd>D</kbd>, or by swiping. Equal tiles merge when they
-        meet. Reach 2048.
+        Your goal is to reach a tile with 2048. Tiles with the same number merge
+        when they meet.
       </p>
 
       <section class="xin-card game-card">
@@ -56,7 +54,7 @@
             id="board"
             tabindex="0"
             role="application"
-            aria-label="2048 board. Use the arrow keys to slide the tiles."
+            aria-label="2048 board. Use the arrow keys or H (left), J (down), K (up), and L (right) to slide the tiles."
           ></div>
           <div class="game-overlay" id="overlay" hidden>
             <p class="game-overlay-title" id="overlay-title"></p>
@@ -65,15 +63,20 @@
           </div>
         </div>
 
-        <p class="xin-note" id="status" role="status"></p>
+        <p class="xin-note game-controls">
+          <span>Move tiles:</span>
+          <span><kbd>&larr;</kbd> (<kbd>H</kbd>)</span>
+          <span><kbd>&darr;</kbd> (<kbd>J</kbd>)</span>
+          <span><kbd>&uarr;</kbd> (<kbd>K</kbd>)</span>
+          <span><kbd>&rarr;</kbd> (<kbd>L</kbd>)</span>
+        </p>
       </section>
     </main>
 
     <footer class="xin-footer">
       <div class="xin-footer-inner">
         <span>&copy; 2026 Xin,&nbsp;Inc.</span>
-        <span>2048 &middot; built FROM xin-portal</span>
-        <span class="xin-host"></span>
+        <span>2048</span>
       </div>
     </footer>
 
