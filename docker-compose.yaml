@@ -1,0 +1,52 @@
+name: xin
+
+services:
+  portal:
+    image: xin-portal:latest
+    build:
+      context: portal
+      dockerfile: ../Dockerfile.portal
+    ports: ["8080:80"]
+    restart: unless-stopped
+
+  replica:
+    image: xin-portal:latest
+    deploy: { replicas: 5 }
+    ports: ["8081-8085:80"]
+    restart: unless-stopped
+
+  # Build portal first: every game below is FROM xin-portal:latest.
+  snake:
+    build:
+      context: snake
+      dockerfile: ../Dockerfile.game
+    ports: ["8091:80"]
+    restart: unless-stopped
+
+  stack:
+    build:
+      context: stack
+      dockerfile: ../Dockerfile.game
+    ports: ["8092:80"]
+    restart: unless-stopped
+
+  rocks:
+    build:
+      context: rocks
+      dockerfile: ../Dockerfile.game
+    ports: ["8093:80"]
+    restart: unless-stopped
+
+  invaders:
+    build:
+      context: invaders
+      dockerfile: ../Dockerfile.game
+    ports: ["8094:80"]
+    restart: unless-stopped
+
+  "2048":
+    build:
+      context: 2048
+      dockerfile: ../Dockerfile.game
+    ports: ["8095:80"]
+    restart: unless-stopped

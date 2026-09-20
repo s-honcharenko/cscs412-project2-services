@@ -1,0 +1,8 @@
+# The portal. Stage C container, replicated in stage E, base for each game.
+FROM nginx:stable-alpine
+
+COPY index.html style.css script.js /usr/share/nginx/html/
+COPY assets/ /usr/share/nginx/html/assets/
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
