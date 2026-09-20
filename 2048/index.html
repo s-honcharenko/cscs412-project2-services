@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xin Arcade — 2048</title>
+    <meta
+      name="description"
+      content="Xin Arcade — 2048. Slide tiles with the arrow keys or by swiping."
+    />
+    <link rel="icon" href="assets/NixOS.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="xin-header">
+      <div class="xin-header-inner">
+        <img class="xin-logo" src="assets/NixOS.svg" alt="Xin, Inc. logo" />
+        <a class="xin-wordmark" href="/">Xin,&nbsp;Inc.</a>
+        <div class="xin-service">
+          <span class="xin-badge">Arcade &middot; 2048</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="xin-main">
+      <h1 class="xin-title">2048</h1>
+      <p class="xin-lede">
+        Slide the tiles with the <kbd>&larr;</kbd> <kbd>&uarr;</kbd>
+        <kbd>&darr;</kbd> <kbd>&rarr;</kbd> keys, <kbd>W</kbd><kbd>A</kbd
+        ><kbd>S</kbd><kbd>D</kbd>, or by swiping. Equal tiles merge when they
+        meet. Reach 2048.
+      </p>
+
+      <section class="xin-card game-card">
+        <div class="xin-toolbar">
+          <div class="game-scores">
+            <div class="game-score">
+              <span class="xin-label">Score</span>
+              <span class="game-score-value" id="score">0</span>
+            </div>
+            <div class="game-score">
+              <span class="xin-label">Best</span>
+              <span class="game-score-value" id="best">0</span>
+            </div>
+          </div>
+          <div class="game-buttons">
+            <button class="xin-btn" id="undo" disabled>Undo</button>
+            <button class="xin-btn xin-btn-primary" id="new">New game</button>
+          </div>
+        </div>
+
+        <div class="game-stage">
+          <div
+            class="ark-board"
+            id="board"
+            tabindex="0"
+            role="application"
+            aria-label="2048 board. Use the arrow keys to slide the tiles."
+          ></div>
+          <div class="game-overlay" id="overlay" hidden>
+            <p class="game-overlay-title" id="overlay-title"></p>
+            <p class="game-overlay-text" id="overlay-text"></p>
+            <div class="game-overlay-buttons" id="overlay-buttons"></div>
+          </div>
+        </div>
+
+        <p class="xin-note" id="status" role="status"></p>
+      </section>
+    </main>
+
+    <footer class="xin-footer">
+      <div class="xin-footer-inner">
+        <span>&copy; 2026 Xin,&nbsp;Inc.</span>
+        <span>2048 &middot; built FROM xin-portal</span>
+        <span class="xin-host"></span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

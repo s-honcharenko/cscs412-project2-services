@@ -1,0 +1,400 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("JetBrainsMono-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --xin-blue: #5277c3;
+  --xin-blue-dk: #3f5ea0;
+  --xin-sky: #7ebae4;
+  --xin-ink: #16202e;
+  --xin-muted: #5d6b7f;
+  --xin-line: #dce3ed;
+  --xin-bg: #f4f6f9;
+  --xin-surface: #ffffff;
+  --xin-hover: #eef2f8;
+  --xin-tint: #edf2fa;
+  --xin-tint-line: #cbd8ec;
+  --xin-ok: #2e7d5b;
+  --xin-warn: #b4552a;
+  --xin-radius: 10px;
+  --xin-shadow:
+    0 1px 2px rgba(22, 32, 46, 0.06), 0 8px 24px rgba(22, 32, 46, 0.06);
+  --xin-font: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --xin-mono: var(--xin-font);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--xin-bg);
+  color: var(--xin-ink);
+  font-family: var(--xin-font);
+  font-size: 15px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+.xin-header {
+  background: var(--xin-surface);
+  border-bottom: 1px solid var(--xin-line);
+}
+
+.xin-header-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.xin-logo {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+
+.xin-wordmark {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--xin-ink);
+  text-decoration: none;
+}
+
+.xin-service {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--xin-muted);
+}
+
+.xin-badge {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--xin-blue-dk);
+  background: rgba(82, 119, 195, 0.1);
+  border: 1px solid rgba(82, 119, 195, 0.22);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.xin-main {
+  flex: 1;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.xin-title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+.xin-lede {
+  margin: 0 0 28px;
+  color: var(--xin-muted);
+  max-width: 62ch;
+}
+
+.xin-card {
+  background: var(--xin-surface);
+  border: 1px solid var(--xin-line);
+  border-radius: var(--xin-radius);
+  box-shadow: var(--xin-shadow);
+  padding: 22px;
+}
+.xin-card + .xin-card {
+  margin-top: 18px;
+}
+
+.xin-label,
+.xin-card-title,
+.xin-table thead th {
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--xin-muted);
+}
+.xin-card-title {
+  margin: 0 0 14px;
+}
+
+.xin-note {
+  margin: 14px 0 0;
+  min-height: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--xin-muted);
+}
+
+.xin-empty {
+  color: var(--xin-muted);
+  font-size: 14.5px;
+  text-align: center;
+  padding: 26px 10px;
+  border: 1px dashed var(--xin-line);
+  border-radius: 8px;
+}
+
+.xin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.xin-btn {
+  font: inherit;
+  font-weight: 550;
+  color: var(--xin-ink);
+  background: var(--xin-surface);
+  border: 1px solid var(--xin-line);
+  border-radius: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    transform 0.04s;
+}
+.xin-btn:hover {
+  background: var(--xin-hover);
+  border-color: #c6d2e4;
+}
+.xin-btn:active {
+  transform: translateY(1px);
+}
+.xin-btn-sm {
+  font-size: 13.5px;
+  padding: 6px 11px;
+  color: var(--xin-muted);
+}
+
+.xin-btn-primary {
+  color: #fff;
+  background: var(--xin-blue);
+  border-color: var(--xin-blue);
+}
+.xin-btn-primary:hover {
+  background: var(--xin-blue-dk);
+  border-color: var(--xin-blue-dk);
+}
+
+.xin-btn.is-on,
+.xin-tab[aria-selected="true"] {
+  color: #fff;
+  background: var(--xin-blue);
+  border-color: var(--xin-blue);
+}
+
+.xin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.xin-tab {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--xin-muted);
+  background: var(--xin-surface);
+  border: 1px solid var(--xin-line);
+  border-radius: 999px;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    color 0.12s,
+    border-color 0.12s;
+}
+.xin-tab:hover {
+  background: var(--xin-hover);
+}
+
+.xin-input,
+select.xin-input {
+  font: inherit;
+  color: var(--xin-ink);
+  background: var(--xin-surface);
+  border: 1px solid var(--xin-line);
+  border-radius: 8px;
+  padding: 9px 11px;
+  width: 100%;
+}
+.xin-input::placeholder {
+  color: #9aa6b8;
+}
+
+.xin-btn:focus-visible,
+.xin-tab:focus-visible,
+.xin-input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--xin-blue);
+  outline-offset: 2px;
+}
+
+.xin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+.xin-table th,
+.xin-table td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--xin-line);
+}
+.xin-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.xin-table .num {
+  text-align: right;
+}
+
+kbd {
+  font-size: 0.85em;
+  background: var(--xin-hover);
+  border: 1px solid var(--xin-line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.game-card {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.game-scores {
+  display: flex;
+  gap: 10px;
+}
+.game-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 82px;
+  padding: 7px 12px;
+  background: var(--xin-tint);
+  border: 1px solid var(--xin-tint-line);
+  border-radius: 8px;
+}
+.game-score-value {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.game-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.game-stage {
+  position: relative;
+}
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--xin-ink);
+  border-radius: 10px;
+  outline: none;
+}
+.game-canvas:focus-visible {
+  box-shadow: 0 0 0 2px var(--xin-blue);
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(244, 246, 249, 0.88);
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+}
+/* Override display: flex when the overlay is hidden. */
+.game-overlay[hidden] {
+  display: none;
+}
+.game-overlay-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+.game-overlay-text {
+  margin: 0 0 8px;
+  color: var(--xin-muted);
+  font-size: 14.5px;
+  max-width: 34ch;
+}
+.game-overlay-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.xin-footer {
+  border-top: 1px solid var(--xin-line);
+  background: var(--xin-surface);
+}
+
+.xin-footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--xin-muted);
+}
+.xin-footer-inner .xin-host {
+  margin-left: auto;
+}
+
+@media (max-width: 560px) {
+  .xin-header-inner {
+    flex-wrap: wrap;
+  }
+  .xin-service {
+    margin-left: 0;
+    width: 100%;
+  }
+  .xin-main {
+    padding: 24px 16px 40px;
+  }
+  .xin-card {
+    padding: 18px;
+  }
+  .xin-title {
+    font-size: 22px;
+  }
+}

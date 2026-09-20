@@ -1,0 +1,118 @@
+.ark-board-wrap,
+.game-stage {
+  margin-top: 0;
+}
+
+.ark-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  padding: 9px;
+  background: #c9d4e6;
+  border-radius: 10px;
+  touch-action: none;
+  user-select: none;
+}
+.ark-board:focus-visible {
+  outline: 2px solid var(--xin-blue);
+  outline-offset: 3px;
+}
+
+.ark-cell {
+  position: relative;
+  aspect-ratio: 1;
+  background: #dde5f1;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 650;
+  font-size: clamp(18px, 6.2vw, 30px);
+  color: var(--xin-ink);
+}
+
+.ark-cell[data-v="2"] {
+  background: var(--xin-tint);
+}
+.ark-cell[data-v="4"] {
+  background: #dce7f7;
+}
+.ark-cell[data-v="8"] {
+  background: #b9d2f0;
+}
+.ark-cell[data-v="16"] {
+  background: #8fb8e6;
+}
+.ark-cell[data-v="32"] {
+  background: #7ebae4;
+  color: #0e2338;
+}
+.ark-cell[data-v="64"] {
+  background: #5277c3;
+  color: #fff;
+}
+.ark-cell[data-v="128"] {
+  background: #4763ae;
+  color: #fff;
+  font-size: clamp(16px, 5.4vw, 26px);
+}
+.ark-cell[data-v="256"] {
+  background: #5e5ba8;
+  color: #fff;
+  font-size: clamp(16px, 5.4vw, 26px);
+}
+.ark-cell[data-v="512"] {
+  background: #7a519b;
+  color: #fff;
+  font-size: clamp(16px, 5.4vw, 26px);
+}
+.ark-cell[data-v="1024"] {
+  background: #a34c7e;
+  color: #fff;
+  font-size: clamp(13px, 4.4vw, 21px);
+}
+.ark-cell[data-v="2048"] {
+  background: #c4643f;
+  color: #fff;
+  font-size: clamp(13px, 4.4vw, 21px);
+  box-shadow: 0 0 0 3px rgba(196, 100, 63, 0.28);
+}
+.ark-cell.is-big {
+  font-size: clamp(12px, 3.8vw, 18px);
+}
+
+.ark-cell.is-new {
+  animation: ark-appear 0.16s ease-out;
+}
+.ark-cell.is-merged {
+  animation: ark-pop 0.16s ease-out;
+}
+
+@keyframes ark-appear {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes ark-pop {
+  0% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ark-cell.is-new,
+  .ark-cell.is-merged {
+    animation: none;
+  }
+}
