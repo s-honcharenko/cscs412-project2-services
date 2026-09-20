@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  var backLink = document.getElementById('back-to-games');
+  var gamesUrl = new URL('/', window.location.href);
+  gamesUrl.port = '8080';
+  backLink.href = gamesUrl.href;
+
   var COLS = 10,
     ROWS = 20,
     CELL = 24,
@@ -297,6 +302,7 @@
   }
 
   document.addEventListener('keydown', function (e) {
+    if (e.target === backLink) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === 'Enter') {
       e.preventDefault();

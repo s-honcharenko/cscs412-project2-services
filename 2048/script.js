@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  var backLink = document.getElementById('back-to-games');
+  var gamesUrl = new URL('/', window.location.href);
+  gamesUrl.port = '8080';
+  backLink.href = gamesUrl.href;
+
   var SIZE = 4;
   var TARGET = 2048;
   var STORE = 'xin.arcade.2048.v1';
@@ -267,6 +272,7 @@
   };
 
   document.addEventListener('keydown', function (e) {
+    if (e.target === backLink) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (!overlayEl.hidden) {
       if (e.key === 'Enter') {

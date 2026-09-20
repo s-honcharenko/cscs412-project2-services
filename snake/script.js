@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  var backLink = document.getElementById('back-to-games');
+  var gamesUrl = new URL('/', window.location.href);
+  gamesUrl.port = '8080';
+  backLink.href = gamesUrl.href;
+
   var COLS = 20,
     ROWS = 15,
     CELL = 24,
@@ -225,6 +230,7 @@
   DIRS.l = DIRS.L = DIRS.ArrowRight;
 
   document.addEventListener('keydown', function (e) {
+    if (e.target === backLink) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (DIRS[e.key]) {
       e.preventDefault();

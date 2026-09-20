@@ -1,3 +1,21 @@
+.game-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--xin-blue-dk);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.game-back:hover {
+  text-decoration: underline;
+}
+
+.game-back:focus-visible {
+  outline: 2px solid var(--xin-blue);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 .game-canvas {
   width: 240px;
   max-width: 100%;
