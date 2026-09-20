@@ -1,19 +1,27 @@
 .game-back {
-  display: inline-block;
-  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  background: var(--xin-surface);
+  border: 1px solid var(--xin-tint-line);
+  border-radius: 8px;
   color: var(--xin-blue-dk);
   font-size: 14px;
+  font-weight: 550;
   text-decoration: none;
 }
 
 .game-back:hover {
-  text-decoration: underline;
+  background: var(--xin-tint);
+  border-color: var(--xin-blue);
 }
 
 .game-back:focus-visible {
   outline: 2px solid var(--xin-blue);
-  outline-offset: 4px;
-  border-radius: 2px;
+  outline-offset: 3px;
 }
 
 .ark-board-wrap,
