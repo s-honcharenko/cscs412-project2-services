@@ -46,7 +46,7 @@ services:
 
   "2048":
     build:
-      context: 2048
+      context: "2048"
       dockerfile: ../Dockerfile.game
     ports: ["8095:80"]
     restart: unless-stopped
