@@ -146,3 +146,41 @@
     animation: none;
   }
 }
+
+.game-overlay.is-game-over {
+  background: rgba(22, 32, 46, 0.94);
+  color: #fff;
+}
+
+.is-game-over .game-overlay-title {
+  font-size: clamp(24px, 5vw, 32px);
+}
+
+.is-game-over .game-overlay-text,
+.game-over-hint {
+  color: var(--xin-line);
+}
+
+.game-over-scores {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0;
+  color: var(--xin-ink);
+}
+
+.game-over-scores[hidden] {
+  display: none;
+}
+
+.game-over-scores .game-score-value {
+  font-size: 28px;
+}
+
+.game-over-hint {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.game-over-hint kbd {
+  color: var(--xin-ink);
+}

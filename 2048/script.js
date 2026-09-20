@@ -115,7 +115,7 @@
       );
     } else if (!movesLeft()) {
       over = true;
-      showOverlay('No moves left', 'Final score ' + score + '.', false);
+      showOverlay('Game over', 'No moves left.', false);
     }
 
     render();
@@ -181,25 +181,43 @@
   function showOverlay(title, text, continuable) {
     document.getElementById('overlay-title').textContent = title;
     document.getElementById('overlay-text').textContent = text;
+    document.getElementById('final-score-label').textContent = continuable
+      ? 'Score'
+      : 'Final score';
+    document.getElementById('final-score').textContent = String(score);
+    document.getElementById('final-best').textContent = String(best);
+    document.getElementById('overlay-action').textContent = continuable
+      ? 'Keep playing'
+      : 'Play again';
 
     var buttons = document.getElementById('overlay-buttons');
     buttons.innerHTML = '';
 
     if (continuable) {
       var keep = document.createElement('button');
-      keep.className = 'xin-btn';
+      keep.className = 'xin-btn xin-btn-primary';
       keep.textContent = 'Keep playing';
-      keep.addEventListener('click', hideOverlay);
+      keep.addEventListener('click', continueGame);
       buttons.appendChild(keep);
     }
 
     var again = document.createElement('button');
-    again.className = 'xin-btn xin-btn-primary';
-    again.textContent = 'New game';
+    again.className = continuable ? 'xin-btn' : 'xin-btn xin-btn-primary';
+    again.textContent = continuable ? 'New game' : 'Play again';
     again.addEventListener('click', reset);
     buttons.appendChild(again);
 
     overlayEl.hidden = false;
+    (continuable ? keep : again).focus({ preventScroll: true });
+  }
+
+  function continueGame() {
+    if (!movesLeft()) {
+      over = true;
+      showOverlay('Game over', 'No moves left.', false);
+      return;
+    }
+    hideOverlay();
   }
 
   function hideOverlay() {
@@ -250,8 +268,21 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!overlayEl.hidden) {
+      if (e.key === 'Enter') {
+        if (e.repeat) {
+          e.preventDefault();
+          return;
+        }
+        if (e.target && e.target.tagName === 'BUTTON') return;
+        e.preventDefault();
+        if (over) reset();
+        else continueGame();
+      }
+      return;
+    }
     var dir = KEYS[e.key];
-    if (!dir || !overlayEl.hidden) return;
+    if (!dir) return;
     e.preventDefault();
     move(dir);
   });

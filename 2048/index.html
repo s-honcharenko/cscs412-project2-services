@@ -56,9 +56,30 @@
             role="application"
             aria-label="2048 board. Use the arrow keys or H (left), J (down), K (up), and L (right) to slide the tiles."
           ></div>
-          <div class="game-overlay" id="overlay" hidden>
+          <div
+            class="game-overlay is-game-over"
+            id="overlay"
+            role="region"
+            aria-labelledby="overlay-title"
+            aria-describedby="overlay-text"
+            hidden
+          >
             <p class="game-overlay-title" id="overlay-title"></p>
             <p class="game-overlay-text" id="overlay-text"></p>
+            <div class="game-over-scores">
+              <div class="game-score">
+                <span class="xin-label" id="final-score-label">Final score</span>
+                <span class="game-score-value" id="final-score">0</span>
+              </div>
+              <div class="game-score">
+                <span class="xin-label">Best</span>
+                <span class="game-score-value" id="final-best">0</span>
+              </div>
+            </div>
+            <p class="game-over-hint">
+              Press <kbd>Enter</kbd> or select
+              <span id="overlay-action">Play again</span>.
+            </p>
             <div class="game-overlay-buttons" id="overlay-buttons"></div>
           </div>
         </div>
