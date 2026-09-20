@@ -1,0 +1,68 @@
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 18px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--xin-ink);
+}
+
+.game-controls span {
+  white-space: nowrap;
+}
+
+.game-controls kbd {
+  display: inline-block;
+  min-width: 26px;
+  padding: 3px 6px;
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.4;
+  border-color: var(--xin-tint-line);
+}
+
+.game-overlay.is-game-over {
+  background: rgba(22, 32, 46, 0.94);
+  color: #fff;
+}
+
+.is-game-over .game-overlay-title {
+  font-size: clamp(24px, 5vw, 32px);
+}
+
+.is-game-over .game-overlay-text,
+.game-over-hint {
+  color: var(--xin-line);
+}
+
+.game-over-scores {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0;
+  color: var(--xin-ink);
+}
+
+.game-over-scores[hidden] {
+  display: none;
+}
+
+.game-over-scores .game-score-value {
+  font-size: 28px;
+}
+
+.game-over-hint {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.game-over-hint kbd {
+  color: var(--xin-ink);
+}
+
+@media (max-width: 480px) {
+  .game-controls span:first-child {
+    flex-basis: 100%;
+  }
+}

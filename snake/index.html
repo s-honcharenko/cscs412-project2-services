@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xin Arcade — Snake</title>
+    <meta
+      name="description"
+      content="Xin Arcade — Snake. Eat food, grow your snake, and avoid the walls and your own body."
+    />
+    <link rel="icon" href="assets/NixOS.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="xin-header">
+      <div class="xin-header-inner">
+        <img class="xin-logo" src="assets/NixOS.svg" alt="Xin, Inc. logo" />
+        <a class="xin-wordmark" href="/">Xin,&nbsp;Inc.</a>
+        <div class="xin-service">
+          <span class="xin-badge">Arcade &bull; Snake</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="xin-main">
+      <h1 class="xin-title">Snake</h1>
+      <p class="xin-lede">
+        Eat food to grow your snake and score points. Avoid the walls and your
+        own body. The snake gets faster as it grows.
+      </p>
+
+      <section class="xin-card game-card">
+        <div class="xin-toolbar">
+          <div class="game-scores">
+            <div class="game-score">
+              <span class="xin-label">Score</span>
+              <span class="game-score-value" id="score">0</span>
+            </div>
+            <div class="game-score">
+              <span class="xin-label">Best</span>
+              <span class="game-score-value" id="best">0</span>
+            </div>
+            <div class="game-score">
+              <span class="xin-label">Length</span>
+              <span class="game-score-value" id="length">0</span>
+            </div>
+          </div>
+          <div class="game-buttons">
+            <button class="xin-btn" id="new">New game</button>
+          </div>
+        </div>
+
+        <div class="game-stage">
+          <canvas
+            class="game-canvas"
+            id="game"
+            width="480"
+            height="360"
+            tabindex="0"
+            aria-label="Snake play area. Steer with the arrow keys or H (left), J (down), K (up), and L (right). Press Enter to start."
+          ></canvas>
+          <div
+            class="game-overlay"
+            id="overlay"
+            role="region"
+            aria-labelledby="overlay-title"
+            aria-describedby="overlay-text"
+          >
+            <p class="game-overlay-title" id="overlay-title"></p>
+            <p class="game-overlay-text" id="overlay-text"></p>
+            <div class="game-over-scores" id="game-over-scores" hidden>
+              <div class="game-score">
+                <span class="xin-label">Final score</span>
+                <span class="game-score-value" id="final-score">0</span>
+              </div>
+              <div class="game-score">
+                <span class="xin-label">Best</span>
+                <span class="game-score-value" id="final-best">0</span>
+              </div>
+            </div>
+            <p class="game-over-hint" id="game-over-hint" hidden>
+              Press <kbd>Enter</kbd> or select Play again.
+            </p>
+            <div class="game-overlay-buttons">
+              <button class="xin-btn xin-btn-primary" id="overlay-btn">
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="xin-note game-controls">
+          <span>Steer:</span>
+          <span><kbd>&larr;</kbd> (<kbd>H</kbd>)</span>
+          <span><kbd>&darr;</kbd> (<kbd>J</kbd>)</span>
+          <span><kbd>&uarr;</kbd> (<kbd>K</kbd>)</span>
+          <span><kbd>&rarr;</kbd> (<kbd>L</kbd>)</span>
+        </p>
+      </section>
+    </main>
+
+    <footer class="xin-footer">
+      <div class="xin-footer-inner">
+        <span>&copy; 2026 Xin,&nbsp;Inc.</span>
+        <span>Snake</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
