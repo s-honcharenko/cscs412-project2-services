@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xin Arcade — Games</title>
+    <meta
+      name="description"
+      content="Play Snake, Stack, Rocks, Invaders, and 2048 at Xin Arcade."
+    />
+    <link rel="icon" href="assets/NixOS.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="xin-header">
+      <div class="xin-header-inner">
+        <img class="xin-logo" src="assets/NixOS.svg" alt="Xin, Inc. logo" />
+        <a class="xin-wordmark" href="/">Xin,&nbsp;Inc.</a>
+        <div class="xin-service">
+          <span class="xin-badge">Arcade &bull; Games</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="xin-main">
+      <div class="portal-hero">
+        <h1 class="xin-title">Xin Arcade</h1>
+        <p class="xin-lede">
+          Choose a game. Keyboard controls are shown on each game page.
+        </p>
+      </div>
+
+      <section aria-label="Games">
+        <div class="portal-grid" data-xin-directory></div>
+        <noscript>
+          <p class="xin-note">Enable JavaScript to see the games.</p>
+        </noscript>
+      </section>
+    </main>
+
+    <footer class="xin-footer">
+      <div class="xin-footer-inner">
+        <span>&copy; 2026 Xin,&nbsp;Inc.</span>
+        <span>Games</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
