@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+SERVER_PRIVATE_IP='172.26.14.121'
+K3S_TOKEN='K10366881bad7607d338268c70bbd51e3686e210fa9996000fcced6dd1e78a62b69::server:1dc4fa656d55d0aff8cd24468172509e'
+
 export DEBIAN_FRONTEND=noninteractive
 echo 'DPkg::Lock::Timeout "600";' > /etc/apt/apt.conf.d/99lock-timeout
 
@@ -8,9 +11,9 @@ apt-get update
 apt-get install -y ca-certificates curl netcat-openbsd \
   docker.io docker-buildx git
 
-hostnamectl set-hostname xin-server
+hostnamectl set-hostname xin-worker
 echo 'preserve_hostname: true' > /etc/cloud/cloud.cfg.d/99-xin-hostname.cfg
-echo '127.0.1.1 xin-server' >> /etc/hosts
+echo '127.0.1.1 xin-worker' >> /etc/hosts
 
 REPO=https://github.com/s-honcharenko/cscs412-project2-services.git
 APP=/home/ubuntu/xin-arcade
@@ -21,22 +24,15 @@ fi
 docker build -t xin-arcade:latest "$APP"
 
 install -d /var/lib/rancher/k3s/agent/images
-docker save -o /var/lib/rancher/k3s/agent/images/xin-arcade.tar \
-  xin-arcade:latest
+docker save -o /var/lib/rancher/k3s/agent/images/xin-arcade.tar xin-arcade:latest
 
-curl -fsSL https://get.k3s.io | sh -s - server \
-  --disable traefik --disable servicelb \
-  --service-node-port-range 8080-8095
-
-install -d -o ubuntu -g ubuntu -m 700 /home/ubuntu/.kube
-install -o ubuntu -g ubuntu -m 600 /etc/rancher/k3s/k3s.yaml \
-  /home/ubuntu/.kube/config
+curl -fsSL https://get.k3s.io | K3S_TOKEN="$K3S_TOKEN" sh -s - agent \
+  --server "https://$SERVER_PRIVATE_IP:6443"
 
 cat > /etc/update-motd.d/50-xin-arcade <<'MOTD'
 #!/bin/bash
 
 node=$(hostname)
-ip=$(hostname -I | awk '{print $1}')
 
 D=$'\e[38;5;68m'    # Xin blue  #5277C3
 L=$'\e[38;5;110m'   # Xin sky   #7EBAE4
@@ -51,7 +47,7 @@ cat <<EOF
   ${D}     ▟█████████████████▙ ${L}▜████▛     ${D}▟▙${R}
   ${D}    ▟███████████████████▙ ${L}▜███▙    ${D}▟██▙${R}        Game portal   :8080
   ${L}           ▄▄▄▄▖           ▜███▙  ${D}▟███▛${R}${R}
-  ${L}          ▟███▛             ▜██▛ ${D}▟███▛${R}${R}         Server IP     ${ip}
+  ${L}          ▟███▛             ▜██▛ ${D}▟███▛${R}${R}         Cluster       K3s
   ${L}         ▟███▛               ▜▛ ${D}▟███▛${R}${R}
   ${L}▟███████████▛                  ${D}▟██████████▙${R}${R}    Games
   ${L}▜██████████▛                  ${D}▟███████████▛${R}${R}      Snake       :8091
@@ -67,32 +63,3 @@ cat <<EOF
 EOF
 MOTD
 chmod 755 /etc/update-motd.d/50-xin-arcade
-
-cat >> /home/ubuntu/.profile <<'PROFILE'
-export KUBECONFIG="$HOME/.kube/config"
-echo 'Agent join token:'
-sudo -n cat /var/lib/rancher/k3s/server/agent-token
-PROFILE
-
-cat > /etc/systemd/system/xin-arcade.service <<'UNIT'
-[Unit]
-Description=Xin Arcade deployment
-After=k3s.service
-Requires=k3s.service
-
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-WorkingDirectory=/home/ubuntu/xin-arcade
-Environment=KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-ExecStart=/usr/local/bin/kubectl wait --for=create node/xin-worker --timeout=1h
-ExecStart=/usr/local/bin/kubectl wait --for=condition=Ready \
-  node/xin-worker --timeout=5m
-ExecStart=/usr/local/bin/kubectl label node xin-worker \
-  node-role.kubernetes.io/worker=worker --overwrite
-ExecStart=/bin/bash run_xin_arcade.sh
-
-[Install]
-WantedBy=multi-user.target
-UNIT
-systemctl enable --now --no-block xin-arcade.service

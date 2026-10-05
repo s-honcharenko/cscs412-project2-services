@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -e
 
 echo 'Xin, Inc. cluster evidence'
 date -u

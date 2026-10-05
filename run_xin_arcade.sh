@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -e
 
 kubectl apply -f k8s.yaml
 kubectl rollout status deployment/xin-arcade --timeout=180s
