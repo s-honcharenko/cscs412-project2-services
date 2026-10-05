@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-SERVER_PRIVATE_IP='172.26.14.121'
-K3S_TOKEN='K10366881bad7607d338268c70bbd51e3686e210fa9996000fcced6dd1e78a62b69::server:1dc4fa656d55d0aff8cd24468172509e'
+SERVER_PRIVATE_IP=''
+K3S_TOKEN=''
 
 export DEBIAN_FRONTEND=noninteractive
 echo 'DPkg::Lock::Timeout "600";' > /etc/apt/apt.conf.d/99lock-timeout
